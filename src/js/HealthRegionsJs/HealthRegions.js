@@ -1,3 +1,6 @@
+// JS to create a basic health regions map
+// Author: Johic Mes - 2021
+
 // This section creates a color scale. A function could be created to do this.
 var COLOR_SCALE = {
   ">10": "#a50f15",
@@ -60,7 +63,7 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
     var mapColour
     d3.select("#mapGroup")
     .selectAll("g")
-    //When hovering over a health region
+    // When hovering over a Health Region
     .on("mouseover", function(d){
       // Highlight the section
       d3.select(this).select("path").attr("stroke",'#333');
@@ -72,6 +75,7 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
       .attr("Style")
       .slice(6, ($(this).children().first().attr("Style").length -1))
 
+      // Add texture to the shape
       var t = textures
       .lines()
       .thicker()
@@ -79,8 +83,12 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
       .slice(6, ($(this).children().first().attr("Style").length -1)));
 
       svg.call(t);
-      $(this).children().first().attr('style', "fill: "+t.url());
+      $(this)
+      .children()
+      .first()
+      .attr('style', "fill: "+t.url());
 
+      // Update the text to reflect the data that is hovered over
       document.getElementById("textarea").innerHTML =
       "The percentage of homes with X in <strong>"
       + d.properties.ENG_LABEL
@@ -89,11 +97,14 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
       + "%</strong>. In Canada, X is the highest cause of Y. November is X Action Month.";
     })
 
+    //Whean leaving a shape return it to normal
     .on("mouseout", function(d){
       $(this).children().first().attr('style', "fill: "+ mapColour +";");
       d3.select(this).select("path").attr("stroke",'#fff');
       d3.select(this).select("path").attr("stroke-width",1);
     })
+
+    // Do the same things as on hover but when a Health Region is tabbed over (Accessibility)
     .on("focus", function(d){
       d3.select(this).select("path").attr("class","activeRegion");
       d3.select(this).select("path").attr("stroke",'#333');
@@ -128,7 +139,10 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
       .first()
       .attr('style', "fill: "+t.url());
 
-    }).on("focusout", function(d){
+    })
+
+    //Undo it when we tab out of a Health Regions
+    .on("focusout", function(d){
       $(this).children().first().attr('style', "fill: "+ mapColour +";");
       d3.select(this).select("path").attr("stroke",'#fff');
       d3.select(this).select("path").attr("stroke-width",1);
@@ -136,6 +150,7 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
 
   });
 
+  // Colours in all the HR of the map
   function colorMap(){
     d3.selectAll(".HR_CODE")
     .style("fill", function(regions) {
@@ -151,18 +166,22 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
     });
   }
 
+  // Return a color value depending on the value of the data
   function color(value){
     if (value >= 10) return COLOR_SCALE[">10"];
     else if (value >= 1) return COLOR_SCALE["1-10"];
     else return COLOR_SCALE["0-1"];
   }
 
+  // As the function name says... Creates and appends a Legend to the SVG
   function drawLegend(){
+    // Parameters
     var target = svg;
     var gap = 5;
     var squareSize = 20;
     var topMargin = 50;
 
+    // Appends a rectangle for every element of the color scale
     target.append('g')
     .attr('class', 'legend')
     .attr('id', 'legend')
@@ -185,6 +204,7 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
       return COLOR_SCALE[d];
     });
 
+    // Appends a title to the legend
     d3.select("#legend")
     .append("text")
     .attr("x",560)
@@ -194,6 +214,7 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
     .attr("y",topMargin-20)
     .text("Percentage of X")
 
+    // Appends text to all the categories (rectangles) of the legend
     d3.selectAll('.category')
     .append('text')
     .attr("class", "legend-text")
@@ -216,5 +237,4 @@ d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
       }
     });
   }
-
 });
