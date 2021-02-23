@@ -8,15 +8,15 @@ It has a color scale and some data all inserted in a GOC looking page.
 
 The folder substructure should be organized the same way as on the production server for simple dev:
 
--- projectName          -> Where the project HTML lives
+-- HealthRegions         -> Where the project HTML lives
 -- SRC                  -> Source files
     -- ajax
     -- assets
     -- css
     -- data
-        -- projectData -> Where the project CSV lives
+        -- HealthRegionsData -> Where the project CSV lives
     -- fonts
     -- js
         -- i18n
-        -- projectJs   -> Where the projects JS lives
+        -- HealthRegionsJs   -> Where the projects JS lives
     -- topojson        -> when making a map the map topographic data is here
