@@ -17,23 +17,6 @@
     <title>Redesign Health Regions Template</title>
     </head>
 
-    <script>
-    // This makes detail tags work in IE
-        function Open_Close(){
-            if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
-                console.log(document.getElementById("det").hasAttribute("open"))
-                if (document.getElementById("det").hasAttribute("open")){
-                    console.log("Close")
-                    document.getElementById("det").removeAttribute("open")
-                } else {
-                    console.log("Open")
-                    document.getElementById("det").setAttribute("open", "true");
-                }
-            }
-        }
-
-    </script>
-
 <body typeof="WebPage">
     <div class="container">
         <header>
@@ -41,10 +24,10 @@
                 <div class="row" id="GCComplianceHeader">
                     <div class="GCCanadaLogo col-lg-2 col-md-3 col-5">
                             <a class="GCSVG SVGlight" href="https://www.canada.ca/home.html" aria-label="Government Of Canada Website">
-                                <object type="image/svg+xml" tabindex="-1" role="img" data="https://cdn-rdc.ea-ad.ca/InfoBase/svg/sig-blk-en.svg" aria-label="Symbol of the Government of Canada" class="canada-logo"></object>
+                                <object type="image/svg+xml" tabindex="-1" role="img" data="../src/assets/sig-blk-en.svg" aria-label="Symbol of the Government of Canada" class="canada-logo"></object>
                             </a>
                             <a class="GCSVG SVGdark" href="https://www.canada.ca/home.html" aria-label="Government Of Canada Website">
-                                <object type="image/svg+xml" tabindex="-1" role="img" data="goc--header-logo.svg" aria-label="Symbol of the Government of Canada" class="canada-logo"></object>
+                                <object type="image/svg+xml" tabindex="-1" role="img" data="../src/assets/goc--header-logo.svg" aria-label="Symbol of the Government of Canada" class="canada-logo"></object>
                             </a>
                     </div>
                     <div class="col-lg-10 col-md-9 col-7 my-auto" id="languageSwitch">
@@ -74,7 +57,7 @@
           <div class="row vertical">
               <a href="#">Infobase</a>
               <a href="#">All Publications</a>
-              <span class="destination">Template Blog</span>
+              <span class="destination">Health Regions Template Map</span>
           </div>
       </header>
 
@@ -82,7 +65,7 @@
     <main class="main">
         <div>
             <div class="content">
-                <h1>Template Blog</h1>
+                <h1>Health Regions Template Map</h1>
             </div>
             <div class="tagDiv">
                 <ul class="listoftags">
@@ -98,14 +81,6 @@
                 </ul>
             </div>
             <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in odio lacinia,
-                ultricies est eu, placerat mauris. Phasellus ultrices nec massa id dapibus.
-                Praesent id pellentesque dui. Nullam scelerisque, sem eu interdum lacinia,
-                diam ligula dapibus arcu, sed gravida ex neque nec
-                ex<sup><a class="fn-lnk" href="#fn1"><span class="wb-inv">Footnote&nbsp;</span>1</a></sup>. Phasellus fermentum
-                tempor nisl posuere lobortis. Pellentesque consequat porttitor lectus in finibus.
-                Cras facilisis nisi quam. Sed mollis accumsan turpis, nec aliquam leo gravida
-                lacinia. Integer aliquam posuere nisl, at semper ex scelerisque at.</p>
 
                 <div id="map-container" class="row" >
                   <div id="map" class="col-md-8"></div>
@@ -115,76 +90,6 @@
                       <br/>
                   </div>
                 </div>
-
-                <details onclick="Open_Close()" class="details1" id="det">
-                    <summary class="summary1">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                        This is details 1
-                    </summary>
-                    <table class="table table-bordered">
-                  <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Age</th>
-                  </tr>
-                  <tr>
-                    <td>Jill</td>
-                    <td>Smith</td>
-                    <td>50</td>
-                  </tr>
-                  <tr>
-                    <td>Eve</td>
-                    <td>Jackson</td>
-                    <td>94</td>
-                  </tr>
-                </table>
-                </details>
-
-
-                <h2>Section Title</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in odio lacinia,
-                ultricies est eu, placerat mauris. Phasellus ultrices nec massa id dapibus.
-                Praesent id pellentesque dui. <a class="link" href="#">Nullam scelerisque</a>, sem eu interdum lacinia,
-                diam ligula dapibus arcu, sed gravida ex neque nec ex. Phasellus fermentum
-                tempor nisl posuere lobortis. Pellentesque consequat porttitor lectus in finibus.
-                Cras facilisis nisi quam. Sed mollis accumsan turpis, nec aliquam leo gravida
-                lacinia. Integer aliquam posuere nisl, at semper ex scelerisque at.</p>
-
-                <div class="info">
-                    <span class="glyphicon glyphicon-info-sign"></span>
-                    <h3>This is an H3</h3>
-                    <p>In the figure below for each age group, the stacked
-                    coloured bars represent disease chapters. To display a
-                    detailed description, hover over or tab to any specific
-                    disease chapter in the graph or the legend. Click or press
-                    return to isolate a disease chapter, click again to restore
-                    the complete graph. Use the switch button to toggle between
-                    number and percentage of deaths. The raw data can be
-                    downloaded in csv format by clicking on the download
-                    button.</p>
-                </div>
-
-            <aside class="wb-fnote wb-init wb-fnote-inited" role="note" id="wb-auto-8">
-            <dl>
-            <dt id="fn1-dt"> Footnote 1 </dt>
-            <dd id="fn1" tabindex="-1" aria-labelledby="fn1-dt">
-            <p>Statistics Canada. Table  102-0561 -  Leading causes of death, total population, by age group and sex, Canada, annual,  CANSIM (database). [Internet]. Ottawa (ON): Statistics Canada; 2018 Feb 23 [cited 2018 Mar 13]. Available at: <a href="http://www5.statcan.gc.ca/cansim/a26?lang=eng&amp;id=1020561">http://www5.statcan.gc.ca/cansim/a26?lang=eng&amp;id=1020561.</a></p>
-            <p class="fn-rtn">
-            <a class="footnote" href="#fn1-rf"> <span class="wb-inv">Return to footnote </span>1<span class="wb-inv"> referrer</span></a></p></dd>
-            </dl>
-            </aside>
-
-            </div>
-            <div class="row">
-                <div class="datemod col-xs-12 mrgn-tp-lg">
-                    <dl id="wb-dtmd">
-                    <dt class="text-muted">Date modified: </dt>
-                    <dd><time class="text-muted" property="dateModified">2020-01-01</time></dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
-
 
     </main>
 
@@ -201,7 +106,7 @@
                     <object type="image/svg+xml" tabindex="-1" role="img" data="https://cdn-rdc.ea-ad.ca/InfoBase/svg/wmms-blk.svg" aria-label="Symbol of the Government of Canada" class="canada-logo"></object>
                 </a>
                 <a class="GCSVG SVGdark" href="https://www.canada.ca/home.html" aria-label="Government Of Canada Website">
-                    <object type="image/svg+xml" tabindex="-1" role="img" data="goc--footer-logo.svg" aria-label="Symbol of the Government of Canada" class="canada-logo"></object>
+                    <object type="image/svg+xml" tabindex="-1" role="img" data="../src/assets/goc--footer-logo.svg" aria-label="Symbol of the Government of Canada" class="canada-logo"></object>
                 </a>
             </div>
         </div>
