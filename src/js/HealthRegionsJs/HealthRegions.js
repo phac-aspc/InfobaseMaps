@@ -9,7 +9,7 @@ var COLOR_SCALE = {
 };
 
 // D3 fetches the data
-d3.csv("../src/data/projectData/RandomData.csv", function(error, data) {
+d3.csv("../src/data/HealthRegionsData/RandomData.csv", function(error, data) {
   if (error) throw error;
   // format the data
   data.forEach(function(d) {

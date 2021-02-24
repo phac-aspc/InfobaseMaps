@@ -1,0 +1,221 @@
+/*************
+Header/footer Section
+*************/
+
+#GCComplianceHeader{
+    padding-bottom: 0.5rem;
+    line-height: 1;
+    border-bottom: 1px solid #e5e5e5;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+/*Makes safari play nice with bootstrap*/
+.row:before, .row:after {
+    display: inline-block;
+}
+
+#languageSwitch{
+    text-align: right;
+}
+
+.GCCanadaLogo{
+  padding-left: 0px;
+}
+
+.GCSVG object {
+  width: 100%;
+}
+
+.blog-header {
+  line-height: 1;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.blog-footer {
+  line-height: 1;
+  border-top: 1px solid #e5e5e5;
+}
+
+.blog-header-logo {
+  font-family: "Playfair Display"; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
+  font-size: 2.75rem;
+  
+}
+
+.blog-header-logo:hover {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.display-4 {
+  font-size: 2.5rem;
+}
+@media (min-width: 768px) {
+  .display-4 {
+    font-size: 3rem;
+  }
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-scroller .nav-link {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: .875rem;
+}
+
+.card-img-right {
+  height: 100%;
+  border-radius: 0 3px 3px 0;
+}
+
+.flex-auto {
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+}
+
+.h-250 { height: 250px; }
+@media (min-width: 768px) {
+  .h-md-250 { height: 250px; }
+}
+
+/* Pagination */
+.blog-pagination {
+  margin-bottom: 4rem;
+}
+.blog-pagination > .btn {
+  border-radius: 2rem;
+}
+
+/*
+ * Blog posts
+ */
+.blog-post {
+  margin-bottom: 4rem;
+}
+.blog-post-title {
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+  font-size: 2.5rem;
+}
+.blog-post-meta {
+  margin-bottom: 1.25rem;
+  color: #999;
+}
+
+/*
+ * Footer
+ */
+.blog-footer {
+  padding-top: 2.5rem;
+  padding-bottom: 100px;
+  color: #999;
+  text-align: left;
+  border-top: .05rem solid #e5e5e5;
+  
+}
+.blog-footer p:last-child {
+  margin-bottom: 0;
+}
+
+input[type=text] {
+  padding: 6px;
+  margin-top: 1rem;
+  margin-bottom: .25rem;
+  font-size: 16px;
+  border: none;
+  width: 100%;
+}
+
+
+.GCSVG:after {
+    bottom: 0;
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.search-icon{
+  margin-top: 1rem;
+}
+
+.infobase-title{
+  padding-top: 1rem;
+}
+
+/*Breadcrumbs*/
+
+.vertical {
+  padding-top: 5px;
+  padding-left: 15px;
+  font-size: 14px;
+  letter-spacing: 0.025rem;
+  color: #757575;
+  bottom: 2rem;
+  left: 2.5rem;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  color: rgba(255,255,255,0.5);
+}
+.vertical a {
+  color: #757575;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  display: inline-block;
+  transition-property: color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+.vertical a:hover {
+  color: #000;
+}
+.vertical a:hover:after {
+  color: #efefef;
+}
+.vertical a:after {
+  content: '/';
+  padding: 0 0.5rem;
+  display: inline-block;
+}
+.vertical span.destination {
+  color: #ff0000;
+}
+
+.SVGlight {display:inherit}
+.SVGdark {display: none;}
+    
+@media (prefers-color-scheme: dark) {
+    .vertical a {color:#efefef;}
+    .vertical a:hover {color:rgba(255,255,255,0.5);}
+    input {background:transparent;}
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #efefef;
+      opacity: 1; /* Firefox */
+    }
+    .SVGlight {display:none}
+    .SVGdark {display: inherit;}
+}
