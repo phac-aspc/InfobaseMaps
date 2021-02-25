@@ -2,9 +2,11 @@
 Johic Mes - 2021
 A few basic maps to fork at the start of a project
 
-This section is useful as a template for a simple health regions map based on d3.js v4.
+This section is useful as a template for a simple Census Regions map based on d3.js v4.
 
 It has a color scale and some data all inserted in a GOC looking page.
+
+It is a branch of Health Regions Map since their underlying structure and code is functionally the same with only minor tweaks.
 
 The folder substructure should be organized the same way as on the production server for simple dev:
 
