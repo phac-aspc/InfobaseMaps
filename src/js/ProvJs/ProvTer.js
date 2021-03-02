@@ -14,18 +14,21 @@ var COLOR_SCALE = {
 };
 
 // D3 fetches the data
-d3.csv("../src/data/CensusRegionsData/data.csv", function(error, data) {
+d3.csv("../src/data/ProvData/data.csv", function(error, data) {
 
   if (error) throw error;
 
   // format the data
   data.forEach(function(d) {
-    d.percent = +d["Rate(per 100,000)"];
-    d.HR = +d.CD;
+    d.year = +d["year"]
+    d.month = +d["month"]
+    d.hirisk = +d["hirisk"]
+    d.age = +d["age"]
+    d.PRUID = +d.PRUID;
   });
 
   // D3 fetches the topojson to create the map.
-  d3.json('../src/topojson/CensusMap.json', function(mapJSON) {
+  d3.json('../src/topojson/ProvincesTerritoriesMap.json', function(mapJSON) {
     svg = d3.selectAll('#map')
     .append('svg')
     .attr("id", "svg")
@@ -38,13 +41,13 @@ d3.csv("../src/data/CensusRegionsData/data.csv", function(error, data) {
     .attr("preserveAspectRatio","xMinYMin meet")
     .attr("viewBox","0 0 900 800"); // Fix up the SVG attributes to fit and look how we want
 
-    var healthregions = topojson.feature(mapJSON, mapJSON.objects.wildfireMap);
+    var provinces = topojson.feature(mapJSON, mapJSON.objects.Can_PR2016);
 
     var projection = d3.geoIdentity((function(x, y) {
       return [2*x, y]; // Create the projection
     }))
     .reflectY(true) // Add some attributes that ensure it fist teh viewbox
-    .fitExtent([[0, 0], [880, 880]], healthregions);
+    .fitExtent([[0, 0], [880, 880]], provinces);
 
     // Create SVG elements then bind data to them.
     var path = d3.geoPath().projection(projection);
@@ -54,15 +57,15 @@ d3.csv("../src/data/CensusRegionsData/data.csv", function(error, data) {
     .attr("id", "mapGroup")
     .attr("transform","translate(0,-50)")
     .selectAll('g')
-    .data(healthregions.features)
+    .data(provinces.features)
     .enter()
 
     hrid
     .append("g")
     .attr("focusable","true")
     .append('path')
-    .attr("id", function(d) { return d.properties["CDUID"]})
-    .attr("class", "CDUID")
+    .attr("id", function(d) { return d.properties["PRUID"]})
+    .attr("class", "PRUID")
     .attr("d", path)
     .attr("stroke","#333")
     .attr("stroke-width",1);
@@ -98,9 +101,9 @@ d3.csv("../src/data/CensusRegionsData/data.csv", function(error, data) {
 
       document.getElementById("textarea").innerHTML =
       "<p>This map shows X rate of Y in Canada"
-      +"<p>The X rate (per 100,000) attributed to Y in the <strong>"
-      + d.properties.CDNAME + "</strong> census district in 2018 was <strong>"
-      + d.percent
+      +"<p>The mean age for X in <strong>"
+      + d.properties.PRENAME + "</strong> in 2018 was <strong>"
+      + d.age
       + "%</strong>.</p>";
     })
     // Do the same things as on hover but when a Health Region is tabbed over (Accessibility)
@@ -127,7 +130,7 @@ d3.csv("../src/data/CensusRegionsData/data.csv", function(error, data) {
       document.getElementById("textarea").innerHTML =
       "<p>This map shows X rate of Y in Canada"
       +"<p>The X rate (per 100,000) attributed to Y in the <strong>"
-      + d.properties.CDNAME + "</strong> census district in 2018 was <strong>"
+      + d.properties.PRENAME + "</strong> census district in 2018 was <strong>"
       + d.percent
       + "%</strong>.</p>";
     })
@@ -150,12 +153,12 @@ d3.csv("../src/data/CensusRegionsData/data.csv", function(error, data) {
 
   // Colours in all the census regions of the map
   function colorMap(){
-    d3.selectAll(".CDUID")
+    d3.selectAll(".PRUID")
     .attr("fill", function(regions) {
-      var HR = regions.properties["CDUID"];
+      var PRUID = regions.properties["PRUID"];
       var i = 0;
       while (i < data.length){
-        if (data[i]["HR"] == HR){
+        if (data[i]["PRUID"] == PRUID){
           regions.percent = data[i].percent;
           return color(data[i].percent)
         } else {
