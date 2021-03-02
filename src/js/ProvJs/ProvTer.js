@@ -6,11 +6,12 @@ isIE = true;
 
 // This section creates a color scale. A function could be created to do this.
 var COLOR_SCALE = {
-  "4.188 to 6.395": "#d7191c",
-  "2.197 to 4.187": "#fdae61",
-  "0.950 to 2.196": "#ffffbf",
-  "0.315 to 0.949": "#abd9e9",
-  "0.003 to 0.314": "#2c7bb6"
+    "80 to 100" : "#1c7d6c",
+    "60 to 79" : "#29bca1",
+    "40 to 59" : "#58dac2",
+    "20 to 39" : "#96e8d9",
+    "0 to 19" : "#eafaf7",
+    "No data" : "#ffffff"
 };
 
 // D3 fetches the data
@@ -46,13 +47,13 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
     var projection = d3.geoIdentity((function(x, y) {
       return [2*x, y]; // Create the projection
     }))
-    .reflectY(true) // Add some attributes that ensure it fist teh viewbox
+    .reflectY(true) // Add some attributes that ensure it fist the viewbox
     .fitExtent([[0, 0], [880, 880]], provinces);
 
     // Create SVG elements then bind data to them.
     var path = d3.geoPath().projection(projection);
 
-    var hrid = svg
+    var prid = svg
     .append('g')
     .attr("id", "mapGroup")
     .attr("transform","translate(0,-50)")
@@ -60,7 +61,7 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
     .data(provinces.features)
     .enter()
 
-    hrid
+    prid
     .append("g")
     .attr("focusable","true")
     .append('path')
@@ -100,17 +101,15 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
       }
 
       document.getElementById("textarea").innerHTML =
-      "<p>This map shows X rate of Y in Canada"
-      +"<p>The mean age for X in <strong>"
+      "<p>The mean age for X in <strong>"
       + d.properties.PRENAME + "</strong> in 2018 was <strong>"
       + d.age
-      + "%</strong>.</p>";
+      + "</strong>.</p>";
     })
     // Do the same things as on hover but when a Health Region is tabbed over (Accessibility)
     .on("focus", function(d){
       if(!d3.select(this).select("path").classed("activeRegion")){
         d3.select(this).select("path").attr("data-fill",d3.select(this).select("path").attr("fill"));
-        console.log("focus oldColour is : ",oldColour);
 
         var t = textures
         .lines()
@@ -128,11 +127,10 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
       }
 
       document.getElementById("textarea").innerHTML =
-      "<p>This map shows X rate of Y in Canada"
       +"<p>The X rate (per 100,000) attributed to Y in the <strong>"
       + d.properties.PRENAME + "</strong> census district in 2018 was <strong>"
       + d.percent
-      + "%</strong>.</p>";
+      + "</strong>.</p>";
     })
     //Whean leaving a shape return it to normal
     .on("mouseout", function(d){
@@ -158,25 +156,28 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
       var PRUID = regions.properties["PRUID"];
       var i = 0;
       while (i < data.length){
+        var c;
         if (data[i]["PRUID"] == PRUID){
-          regions.percent = data[i].percent;
-          return color(data[i].percent)
+          regions.age = data[i].age;
+          c = color(data[i].age)
+          break;
         } else {
-
+          c = COLOR_SCALE["No data"];
         }
         i ++
       }
-
+      return c;
     });
   }
 
   // Return a color value depending on the value of the data
   function color(value){
-    if (value >= 4.188) return COLOR_SCALE["4.188 to 6.395"];
-    else if (value >= 2.197) return COLOR_SCALE["2.197 to 4.187"];
-    else if (value >= 0.950) return COLOR_SCALE["0.950 to 2.196"];
-    else if (value >= 0.315) return COLOR_SCALE["0.315 to 0.949"];
-    else return COLOR_SCALE["0.003 to 0.314"];
+    if (value >= 13.7) return COLOR_SCALE["80 to 100"];
+                else if (value >= 13.5) return COLOR_SCALE["60 to 79"];
+                else if (value >= 13.3) return COLOR_SCALE["40 to 59"];
+                else if (value >= 13.1) return COLOR_SCALE["20 to 39"];
+                else if (value >= 12.9) return COLOR_SCALE["0 to 19"];
+                else return COLOR_SCALE["No data"];
   }
 
   // As the function name says... Creates and appends a Legend to the SVG
