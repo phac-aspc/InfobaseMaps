@@ -100,12 +100,21 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
         d3.select(this).select("path").attr("stroke-width",3);
       }
 
-      document.getElementById("textarea").innerHTML =
-      "<p>The mean age for X in <strong>"
-      + d.properties.PRENAME + "</strong> in 2018 was <strong>"
-      + d.age
-      + "</strong>.</p>";
+      // Update the text
+      if (d.age != undefined){
+        document.getElementById("textarea").innerHTML =
+        "<p>The mean age for X in <strong>"
+        + d.properties.PRENAME + "</strong> in 2018 was <strong>"
+        + d.age
+        + "</strong>.</p>";
+      } else {
+        document.getElementById("textarea").innerHTML =
+        "<p>No data available for "
+        + d.properties.PRENAME + "."
+      }
+
     })
+    
     // Do the same things as on hover but when a Health Region is tabbed over (Accessibility)
     .on("focus", function(d){
       if(!d3.select(this).select("path").classed("activeRegion")){
@@ -126,11 +135,19 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
         d3.select(this).select("path").attr("stroke-width",3);
       }
 
-      document.getElementById("textarea").innerHTML =
-      +"<p>The X rate (per 100,000) attributed to Y in the <strong>"
-      + d.properties.PRENAME + "</strong> census district in 2018 was <strong>"
-      + d.percent
-      + "</strong>.</p>";
+      // Update the text
+      if (d.age != undefined){
+        document.getElementById("textarea").innerHTML =
+        "<p>The mean age for X in <strong>"
+        + d.properties.PRENAME + "</strong> in 2018 was <strong>"
+        + d.age
+        + "</strong>.</p>";
+      } else {
+        document.getElementById("textarea").innerHTML =
+        "<p>No data available for "
+        + d.properties.PRENAME + "."
+      }
+
     })
     //Whean leaving a shape return it to normal
     .on("mouseout", function(d){
