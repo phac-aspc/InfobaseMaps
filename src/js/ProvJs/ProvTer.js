@@ -114,7 +114,7 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
       }
 
     })
-    
+
     // Do the same things as on hover but when a Health Region is tabbed over (Accessibility)
     .on("focus", function(d){
       if(!d3.select(this).select("path").classed("activeRegion")){
@@ -238,7 +238,7 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
     .attr("font-weight","bold")
     .append("tspan")
     .attr("y",topMargin-20)
-    .text("X rate (per 100,000)");
+    .text("Mean Age");
 
     // Appends text to all the categories (rectangles) of the legend
     d3.selectAll('.category')
@@ -255,15 +255,15 @@ d3.csv("../src/data/ProvData/data.csv", function(error, data) {
     .style("text-anchor","end")
     .text(function(d,i){
         if(i==0){
-          return "4.188 to 6.395";
+          return "13.5 < ";
         }else if(i==1){
-          return "2.197 to 4.187";
+          return "13.5 >=";
         }else if(i==2){
-          return "0.950 to 2.196";
+          return "13.3 >=";
         }else if(i==3){
-          return "0.315 to 0.949"
+          return "13.1 >="
         }else if(i==4){
-          return "0.003 to 0.314";
+          return "12.9 >=";
         }
     });
   }
