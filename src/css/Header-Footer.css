@@ -2,10 +2,23 @@
 Header/footer Section
 *************/
 
+header{
+  background-color: #f7f7f7;
+  padding: 5px;
+  padding-bottom: 15px;
+  border-bottom: 3px solid #e5e5e5;
+}
+
+footer{
+  background-color: #f7f7f7;
+  padding: 5px;
+  border-top: 3px solid #e5e5e5;
+}
+
 #GCComplianceHeader{
     padding-bottom: 0.5rem;
     line-height: 1;
-    border-bottom: 1px solid #e5e5e5;
+    /* border-bottom: 1px solid #e5e5e5; */
     margin-right: 0;
     margin-left: 0;
 }
@@ -29,18 +42,14 @@ Header/footer Section
 
 .blog-header {
   line-height: 1;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.blog-footer {
-  line-height: 1;
-  border-top: 1px solid #e5e5e5;
+  /* border-bottom: 3px solid #e5e5e5; */
 }
 
 .blog-header-logo {
-  font-family: "Playfair Display"; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px;
-  font-size: 2.75rem;
-  
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 3.5rem;
+  color: #000;
+
 }
 
 .blog-header-logo:hover {
@@ -129,12 +138,10 @@ h1, h2, h3, h4, h5, h6 {
  * Footer
  */
 .blog-footer {
-  padding-top: 2.5rem;
-  padding-bottom: 100px;
   color: #999;
   text-align: left;
-  border-top: .05rem solid #e5e5e5;
-  
+  padding-top: 15px;
+
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
@@ -164,7 +171,8 @@ input[type=text] {
 }
 
 .infobase-title{
-  padding-top: 1rem;
+  padding-top: 1.5rem;
+  padding-left: 13px;
 }
 
 /*Breadcrumbs*/
@@ -207,7 +215,7 @@ input[type=text] {
 
 .SVGlight {display:inherit}
 .SVGdark {display: none;}
-    
+
 @media (prefers-color-scheme: dark) {
     .vertical a {color:#efefef;}
     .vertical a:hover {color:rgba(255,255,255,0.5);}
