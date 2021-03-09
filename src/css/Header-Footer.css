@@ -226,4 +226,10 @@ input[type=text] {
     }
     .SVGlight {display:none}
     .SVGdark {display: inherit;}
+    header {
+      background-color: #424242;
+    }
+    footer {
+      background-color: #424242
+    }
 }
